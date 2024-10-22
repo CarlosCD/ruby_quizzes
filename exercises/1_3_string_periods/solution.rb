@@ -2,17 +2,16 @@
 
 def solution(decimal_number)
   binary = decimal_number.to_s(2)
-  period  = binary.length / 2
+  max_period  = binary.length / 2
+  period = 1
   found = false
-  while !found
-    prefix = binary.slice(0, period)
-    tail = binary.slice(period, binary.length - period)
-    found = tail.start_with?(prefix) || period == 0
-    period -= 1 unless found
+  while !found && period <= max_period do
+    pieces = binary.scan(/.{#{period}}/)
+    prefix = pieces.shift
+    found = pieces.all?{|piece| piece == prefix}
+    period += 1 unless found
   end
-  period == 0 ? -1 : period
+  period > max_period ? -1 : period
 end
 
-# Notes:
-#  This was a timed test, on November 2013.
-#  This solution is neither correct, nor the best approach
+# Note: in this solution complexity requirements are ignored.
