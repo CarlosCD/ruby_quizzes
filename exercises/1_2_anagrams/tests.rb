@@ -3,12 +3,14 @@
 
 solution = ARGV[0] || 'solution'
 
+require_relative 'test_data'
+
 begin
   require_relative solution
 rescue Exception => e
   puts "\n" \
        "Error: #{e}\n" \
-       "  Pass as an argument the Ruby file containing the solution:\n" \
+       "  Pass as an argument the Ruby file containing the solution file:\n" \
        "  Example\n" \
        "    tests.rb solution_1\n\n"
   raise e
@@ -20,14 +22,12 @@ def test(code_lambda, args, expected_result, error_message = nil)
     puts 'passed'
   else
     print (error_message || 'failed')
-    puts " - expected #{expected_result} but got #{result}"
+    puts " - for '#{args}'#{TEST_FAILURE_EXTRA_DETAILS.call(args)}, " \
+         "expected '#{expected_result}' but got '#{result}'"
   end
 end
 
-code_lambda = ->(word) { anagram(word) }
-test code_lambda, 'admits', %w(admits amidst)
-test code_lambda, 'adolescence', ['adolescence']
-test code_lambda, 'horse', %w(heros horse shore)
-test code_lambda, 'zulu', ['zulu']
-test code_lambda, 'luuz', ['zulu']
-test code_lambda, 'luz', []
+code_lambda = ->(arg) { send SOLUTION_METHOD_NAME, arg }
+TEST_DATA.each do |arg, result|
+  test code_lambda, arg, result
+end

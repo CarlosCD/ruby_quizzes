@@ -1,10 +1,20 @@
 #!/usr/bin/env -S ruby
 # frozen_string_literal: true
 
-word = ARGV[0]
-solution_file = ARGV[1] if ARGV.size > 1
+require_relative 'test_data'
 
-solution = solution_file || 'solution'
+if ARGV.size > 0
+  argument = ARGV[0]
+  solution = ARGV[1] || 'solution'
+else
+  puts "\n" \
+       "Please pass at least one argument with the data to use (and if there is more than one solution, the solution file),\n" \
+       "Examples:\n" \
+       "  run_solution.rb #{TEST_DATA.keys.sample}\n" \
+       "  run_solution.rb #{TEST_DATA.keys.sample} solution\n" \
+       "  run_solution.rb #{TEST_DATA.keys.sample} solution_1\n\n"
+  exit(1)
+end
 
 begin
   require_relative solution
@@ -13,8 +23,8 @@ rescue Exception => e
        "Error: #{e}\n" \
        "  Pass as a second argument the Ruby file containing the solution:\n" \
        "  Example\n" \
-       "    run_solution.rb horse solution_1\n\n"
-  raise e
+       "    run_solution.rb #{argument || TEST_DATA.keys.sample} solution_1\n\n"
+  exit(1)
 end
 
-puts "'#{word}': #{anagram word}"
+puts "For '#{argument}', the solution is '#{send SOLUTION_METHOD_NAME, argument}'"

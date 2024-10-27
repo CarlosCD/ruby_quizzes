@@ -1,7 +1,20 @@
 #!/usr/bin/env -S ruby
 # frozen_string_literal: true
 
-require_relative 'solution'
+solution = ARGV[0] || 'solution'
+
+require_relative 'test_data'
+
+begin
+  require_relative solution
+rescue Exception => e
+  puts "\n" \
+       "Error: #{e}\n" \
+       "  Pass as an argument the Ruby file containing the solution file:\n" \
+       "  Example\n" \
+       "    tests.rb solution_1\n\n"
+  raise e
+end
 
 def test(code_lambda, args, expected_result, error_message = nil)
   result = code_lambda.call(args)
@@ -9,17 +22,12 @@ def test(code_lambda, args, expected_result, error_message = nil)
     puts 'passed'
   else
     print (error_message || 'failed')
-    puts " - expected #{expected_result} but got #{result}"
+    puts " - for '#{args}'#{TEST_FAILURE_EXTRA_DETAILS.call(args)}, " \
+         "expected '#{expected_result}' but got '#{result}'"
   end
 end
 
-code_lambda = ->(num) { pretty_number(num) }
-test code_lambda, 1, '1'
-test code_lambda, 10, '10'
-test code_lambda, 100, '100'
-test code_lambda, 1000, '1,000'
-test code_lambda, 10000, '10,000'
-test code_lambda, 100000, '100,000'
-test code_lambda, 1000000, '1,000,000'
-test code_lambda, 35235235, '35,235,235'
-test code_lambda, 1_000_000_000, '1,000,000,000'
+code_lambda = ->(arg) { send SOLUTION_METHOD_NAME, arg }
+TEST_DATA.each do |arg, result|
+  test code_lambda, arg, result
+end

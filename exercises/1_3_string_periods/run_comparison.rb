@@ -3,22 +3,31 @@
 
 require 'benchmark'
 
-NUM_SOLUTIONS = 4
-solution_names = 1.upto(NUM_SOLUTIONS).collect{|num| "solution_#{num}"}
-
-# Rename the solution method as solution_1, solution_2,...:
-solution_names.each do |solution_name|
-  require_relative solution_name
-  eval "alias #{solution_name} solution"
+exercise_path = __dir__ + '/'
+solution_files = Dir["#{exercise_path}solution*.rb"]
+if solution_files.empty?
+  puts "\n" \
+       "Error:\n" \
+       "  No solutions find as:\n" \
+       "    #{exercise_path}solution*.rb\n\n"
+  exit(1)
 end
 
-numbers = [ 1797753455250435, 11498610839207, 886702925625, 44916448590, 3469659854, 845625, 1651, 955, 825, 255, 123, 102, 15, 7 ]
+require_relative exercise_path + 'test_data'
+
+solution_names = solution_files.collect{|n| n[exercise_path.size..-4]}
+solution_names.each do |solution_name|
+  require_relative exercise_path + solution_name
+  eval "alias #{solution_name} #{SOLUTION_METHOD_NAME}"
+end
+
+test_data = TEST_DATA.keys
 
 puts "Benchmarks:\n\n"
 Benchmark.bmbm do |x|
   solution_names.each do |solution_name|
     x.report(solution_name + ':') do
-      numbers.each{|n| send(solution_name, n)}
+      test_data.each{|n| send(solution_name, n)}
     end
   end
 end

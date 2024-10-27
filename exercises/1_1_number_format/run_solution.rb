@@ -1,16 +1,30 @@
 #!/usr/bin/env -S ruby
 # frozen_string_literal: true
 
-require_relative 'solution'
+require_relative 'test_data'
 
-number = ARGV.first.to_i
-if ARGV.first != number.to_s
+if ARGV.size > 0
+  argument = ARGV[0]
+  solution = ARGV[1] || 'solution'
+else
   puts "\n" \
-       "Please include a number as a single argument\n" \
-       "Example:\n" \
-       "  ./run_solution.rb 42\n" \
-       "\n"
+       "Please pass at least one argument with the data to use (and if there is more than one solution, the solution file),\n" \
+       "Examples:\n" \
+       "  run_solution.rb #{TEST_DATA.keys.sample}\n" \
+       "  run_solution.rb #{TEST_DATA.keys.sample} solution\n" \
+       "  run_solution.rb #{TEST_DATA.keys.sample} solution_1\n\n"
   exit(1)
 end
 
-puts "#{number} ---> #{pretty_number(number)}"
+begin
+  require_relative solution
+rescue Exception => e
+  puts "\n" \
+       "Error: #{e}\n" \
+       "  Pass as a second argument the Ruby file containing the solution:\n" \
+       "  Example\n" \
+       "    run_solution.rb #{argument || TEST_DATA.keys.sample} solution_1\n\n"
+  exit(1)
+end
+
+puts "For '#{argument}', the solution is '#{send SOLUTION_METHOD_NAME, argument}'"

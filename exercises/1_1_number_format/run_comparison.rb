@@ -34,9 +34,5 @@ end
 
 # Results, Ruby 3.3.5 (without the GC rehearsal):
 #
-#                   user     system      total        real
-# solution_1:   0.157341   0.003710   0.161051 (  0.161087)
-# solution_2:   0.155183   0.003695   0.158878 (  0.158943)
-# solution_3:   0.026508   0.000817   0.027325 (  0.027340)
-
-# solution_3 seems to be considerably faster
+#                 user     system      total        real
+# solution:   0.000024   0.000001   0.000025 (  0.000024)
