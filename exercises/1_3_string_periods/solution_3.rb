@@ -6,7 +6,8 @@
 #   Use run_comparison.rb to see the differences
 
 def solution(decimal_number)
-  binary = decimal_number.to_s(2)
+  # If not an Integer, make it so:
+  binary = decimal_number.to_i.to_s(2)
   binary_length = binary.length
   max_period  = binary_length / 2
   # Considering some special cases:

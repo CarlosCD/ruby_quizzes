@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 def solution(decimal_number)
-  binary = decimal_number.to_s(2)
+  # If not an Interger, make it so:
+  binary = decimal_number.to_i.to_s(2)
   binary_length = binary.length
   max_period  = binary_length / 2
   period = 1
