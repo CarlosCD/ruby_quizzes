@@ -4,16 +4,16 @@
 solution = ARGV[0] || 'solution'
 
 require_relative 'test_data'
+require_relative '../../utils/quizzes_utils'
 
 begin
   require_relative solution
 rescue Exception => e
-  puts "\n" \
-       "Error: #{e}\n" \
-       "  Pass as an argument the Ruby file containing the solution file:\n" \
-       "  Example\n" \
-       "    tests.rb solution_1\n\n"
-  raise e
+  puts "\nError: #{e}\n\n"
+  puts "Pass a parameter with the Ruby solution file."
+  puts "Examples:"
+  puts QuizzesUtils.examples_message_test
+  exit(1)
 end
 
 def test(code_lambda, args, expected_result, error_message = nil)
