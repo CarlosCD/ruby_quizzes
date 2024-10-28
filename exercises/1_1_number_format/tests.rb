@@ -5,6 +5,7 @@ solution = ARGV[0] || 'solution'
 
 require_relative 'test_data'
 require_relative '../../utils/quizzes_utils'
+require_relative '../../utils/quizzes_tests'
 
 begin
   require_relative solution
@@ -16,18 +17,7 @@ rescue Exception => e
   exit(1)
 end
 
-def test(code_lambda, args, expected_result, error_message = nil)
-  result = code_lambda.call(args)
-  if result == expected_result
-    puts 'passed'
-  else
-    print (error_message || 'failed')
-    puts " - for '#{args}'#{TEST_FAILURE_EXTRA_DETAILS.call(args)}, " \
-         "expected '#{expected_result}' but got '#{result}'"
-  end
-end
-
 code_lambda = ->(arg) { send SOLUTION_METHOD_NAME, arg }
 TEST_DATA.each do |arg, result|
-  test code_lambda, arg, result
+  QuizzesTests.test code_lambda, arg, result, error_extra: TEST_FAILURE_EXTRA_DETAILS
 end
