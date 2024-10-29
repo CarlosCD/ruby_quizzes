@@ -3,7 +3,7 @@
 # Considering some special cases, to try to speed them up.
 #   Unfortunately this did not improve the rest of the cases, so I removed this in the next
 #   solution.
-#   Use run_comparison.rb to see the performance differences
+#   Use compare_solutions.rb to see the performance differences
 
 def solution(decimal_number)
   # If not an Integer, make it so:
