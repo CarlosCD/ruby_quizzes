@@ -11,6 +11,10 @@ module QuizzesUtils
       available_solutions.collect{|s| "  run_solution.rb #{s}"}.join("\n") + "\n\n"
     end
 
+    def find_solutions(exercise_path = caller_directory)
+      Dir["#{exercise_path}solution*.rb"].collect{|n| n[exercise_path.size..-4]}
+    end
+
     private
 
     def blank?(string_or_nil)
@@ -19,10 +23,6 @@ module QuizzesUtils
 
     def caller_directory
       File.dirname(caller_locations.last.path) + '/'
-    end
-
-    def find_solutions(exercise_path = caller_directory)
-      Dir["#{exercise_path}solution*.rb"].collect{|n| n[exercise_path.size..-4]}
     end
 
     def available_solutions(exercise_path = caller_directory)

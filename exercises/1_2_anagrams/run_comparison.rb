@@ -3,9 +3,17 @@
 
 require 'benchmark'
 
-exercise_path = __dir__ + '/'
-solution_files = Dir["#{exercise_path}solution*.rb"]
-if solution_files.empty?
+# The exercise folder: 1_1_number_format, 1_2_anagrams, or 1_3_string_periods
+exercise_folder = (__dir__).split('exercises/').last
+
+exercise_path = "exercises/#{exercise_folder}/"
+exercise_path_relative_prefix = './'
+utils_path_relative_prefix = '../../'
+
+require_relative utils_path_relative_prefix + 'utils/quizzes_utils'
+
+solution_names = QuizzesUtils.find_solutions(exercise_path)
+if solution_names.empty?
   puts "\n" \
        "Error:\n" \
        "  No solutions find as:\n" \
@@ -13,11 +21,10 @@ if solution_files.empty?
   exit(1)
 end
 
-require_relative exercise_path + 'test_data'
+require_relative exercise_path_relative_prefix + 'test_data'
 
-solution_names = solution_files.collect{|n| n[exercise_path.size..-4]}
 solution_names.each do |solution_name|
-  require_relative exercise_path + solution_name
+  require_relative exercise_path_relative_prefix + solution_name
   eval "alias #{solution_name} #{SOLUTION_METHOD_NAME}"
 end
 
@@ -31,12 +38,3 @@ Benchmark.bmbm do |x|
     end
   end
 end
-
-# Results, Ruby 3.3.5 (without the GC rehearsal):
-#
-#                   user     system      total        real
-# solution_1:   0.157341   0.003710   0.161051 (  0.161087)
-# solution_2:   0.155183   0.003695   0.158878 (  0.158943)
-# solution_3:   0.026508   0.000817   0.027325 (  0.027340)
-
-# solution_3 seems to be considerably faster
