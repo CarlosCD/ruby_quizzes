@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 # Considering some special cases, to try to speed them up.
-#   Unfortunately this didi not improve the rest of the cases, so I removed this in the next
+#   Unfortunately this did not improve the rest of the cases, so I removed this in the next
 #   solution.
-#   Use run_comparison.rb to see the differences
+#   Use run_comparison.rb to see the performance differences
 
 def solution(decimal_number)
   # If not an Integer, make it so:

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 def anagram(word)
-  dictionary_file = File.join(__dir__, 'wl.txt')
+  dictionary_file = File.join(__dir__, 'words_list.txt')
   word_size = word.size
   # Only words with the size as the target:
   small_dictionary = File.open(dictionary_file).readlines("\n").
