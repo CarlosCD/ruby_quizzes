@@ -27,7 +27,11 @@ Examples:
     ./run_solution.rb 1_number_format 1000
       For '1000', the solution is '1,000'
 
-    ./tests.rb 2_anagram solution_2
+    ./run_solution.rb 2_anagram maple solution
+      For 'maple', the solution is '["ample", "maple"]'
+
+
+    ./tests.rb 2_anagram
       passed
       passed
       passed
@@ -40,6 +44,22 @@ Examples:
       passed
       passed
       passed
+
+In the case of `compare_solutions.rb`, I only have one solution at this moment:
+
+    ./compare_solutions.rb 3_binary_periods
+
+      Benchmarks for '3_binary_periods':
+
+      Rehearsal ---------------------------------------------
+      solution:   0.000023   0.000001   0.000024 (  0.000023)
+      ------------------------------------ total: 0.000024sec
+
+                      user     system      total        real
+      solution:   0.000021   0.000001   0.000022 (  0.000021)
+
+But for some exercises I used to have several alternative solutions (you can see them by going back
+through the Git history):
 
     ./compare_solutions.rb 3_binary_periods
 
