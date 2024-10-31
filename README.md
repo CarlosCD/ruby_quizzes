@@ -2,10 +2,10 @@
 
 Several coding exercises, short and mostly proposed by others.
 
-## Exercises' file structure
+## The exercises
 
 Each exercise is in its own folder under `exercises/`, and usually consist in three different files:
-- `instructions.md`: the exercise instructions, in Markdown format. What to do.
+- `README.md`: the exercise instructions, in Markdown format. What to be done.
 - `test_data.rb`: some constants to test the solution and run benchmarks:
   + `TEST_DATA`: Some test data. Hash as `input => expected output`.
   + `SOLUTION_METHOD_NAME`: name of the method that does the work. It can be changed if decided.
