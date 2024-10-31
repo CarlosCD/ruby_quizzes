@@ -1,33 +1,35 @@
 #!/usr/bin/env -S ruby
 # frozen_string_literal: true
 
-is_subfolder = (__dir__).include?('/exercises/')
-# If is subfolder, use the exercise's folder instead of the first argument:
-exercise_folder = __dir__.split('/exercises/').last if is_subfolder
-
 arguments_missing = "Pass these arguments:\n" \
                     "  - The exercise subfolder\n" \
                     "  - The argument to pass to the solution method\n" \
                     "  - The Ruby solution file\n"
 
 if ARGV.size > 0
-  exercise_folder ||= ARGV[0]
+  exercise_folder = ARGV[0]
   argument = ARGV[1]
   solution = ARGV[2] || 'solution'
 else
   puts "\nError:\n" +
        arguments_missing +
        "Example\n" \
-       "  run_solution.rb #{exercise_folder || '1_1_number_format'} 2000 solution\n\n"
+       "  .\/run_solution.rb #{exercise_folder || '1_1_number_format'} 2000 solution\n\n"
   exit(1)
 end
 
 exercise_path = "exercises/#{exercise_folder}/"
-exercise_path_relative_prefix = is_subfolder ? './' : exercise_path
-utils_path_relative_prefix = is_subfolder ? '../../' : './'
 
-require_relative exercise_path_relative_prefix + 'test_data'
-require_relative utils_path_relative_prefix + 'utils/quizzes_utils'
+begin
+  require_relative "#{exercise_path}test_data"
+rescue Exception => e
+  puts "\nError: #{e}\n\n"
+  puts "Unable to find '#{exercise_path}test_data.rb'"
+  puts "Are you sure that the exercise folder '#{exercise_folder}' is correct?"
+  exit(1)
+end
+
+require_relative 'utils/quizzes_utils'
 
 unless argument
   puts "\n" \
@@ -53,7 +55,7 @@ unless File.exist?(solution_file)
 end
 
 begin
-  require_relative exercise_path_relative_prefix + solution
+  require_relative "#{exercise_path}#{solution}"
 rescue Exception => e
   puts "\n" \
        "Error: #{e}\n\n" +
