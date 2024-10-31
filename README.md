@@ -24,10 +24,10 @@ These are three Ruby executables at the root of this repository:
 
 Examples:
 
-    ./run_solution.rb 1_1_number_format 1000
+    ./run_solution.rb 1_number_format 1000
       For '1000', the solution is '1,000'
 
-    ./tests.rb 1_2_anagrams solution_2
+    ./tests.rb 2_anagram solution_2
       passed
       passed
       passed
@@ -41,9 +41,9 @@ Examples:
       passed
       passed
 
-    ./compare_solutions.rb 1_3_string_periods
+    ./compare_solutions.rb 3_binary_periods
 
-      Benchmarks for '1_3_string_periods':
+      Benchmarks for '3_binary_periods':
 
       Rehearsal -----------------------------------------------
       solution_1:   0.000221   0.000017   0.000238 (  0.000237)
