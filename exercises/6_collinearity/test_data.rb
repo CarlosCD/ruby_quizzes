@@ -2,6 +2,12 @@
 
 SOLUTION_METHOD_NAME = 'collinearity'
 TEST_DATA = {
+              # Faulty data returns false:
+              nil             => false,
+              'Hello world!'  => false,
+              'puts "Hey!"'   => false,
+              [1, 2, 3]       => false,
+              [1, 2, 3, 4, 5] => false,
               # Vectors directed in one direction:
               [1, 1, 1, 1]   => true,
               '[1, 1, 1, 1]' => true,  # Takes Strings as well, representing an Array
