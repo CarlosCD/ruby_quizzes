@@ -9,10 +9,16 @@ def decode(a)
   encoded = arr.join.b # ASCII String
   prefix = encoded.slice!(0,2).bytes
   n = prefix[1] - prefix[0]
-  decoded = +''
-  encoded.each_char do |c|
-    dec_char = (c.getbyte(0) - n).chr
-    decoded << ((dec_char =~ /[a-z]/i) ? dec_char : c)
-  end
-  decoded
+  encoded.each_char.map{|c| plain_letter_shift(c, -n) }.join
+end
+
+def plain_letter_shift(ch, offset)
+  return ch unless ch =~ /[a-z]/i
+  # Using code number, for speed:
+  #   A: 65, Z = 90, a = 97, z = 122
+  #   A-Z are 26 letters ('Z'.getbyte(0) - 'A'.getbyte(0) + 1)
+  zero = (ch =~ /[A-Z]/) ? 65 : 97
+  # Note: even if offset is negative, modulo is always positive
+  incr = (ch.getbyte(0) + offset - zero) % 26
+  (zero + incr).chr
 end

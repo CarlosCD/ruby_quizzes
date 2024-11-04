@@ -6,6 +6,13 @@ encoded_1 = ['ijJ tipvme ibw', 'f lopxo uibu z', 'pv xpvme ibwf ', 'b qfsgfdu bo
 TEST_DATA = {
               encoded_1      => plain_text,
               encoded_1.to_s => plain_text,
-              ['noOpx', ' zpv ', 'lopx ', 'zpvs ', 'BCDt!'] => 'Now you know your ABCs!'
+              ['noOpx', ' zpv ', 'lopx ', 'zpvs ', 'BCDt!'] => 'Now you know your ABCs!',
+              ['ttThe sam', 'e sentenc', 'e, but sp', 'lit in 5 ', 'chunks'] =>
+                'The same sentence, but split in 5 chunks',
+              # Checking letters cycle (if shift is 1, Z => A, z => a):
+              ['hnN', 'krr', 'u c', 'uxr', 'j!']      => 'Hello world!',
+              ['hnN', 'krr', 'u c', 'uxr', 'j!'].to_s => 'Hello world!',
+              ['zaA cfdp', 'nft B bo', 'e a cfdp', 'nft b, s', 'jhiu?'] =>
+                'Z becomes A and z becomes a, right?'
             }
 TEST_FAILURE_EXTRA_DETAILS = ->(arg) { '' }
