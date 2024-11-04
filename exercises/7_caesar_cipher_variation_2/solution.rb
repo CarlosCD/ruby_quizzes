@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Decodes an Array of five strings:
 def decode(a)
   # Allow String as an argument:
@@ -7,7 +9,7 @@ def decode(a)
   encoded = arr.join.b # ASCII String
   prefix = encoded.slice!(0,2).bytes
   n = prefix[1] - prefix[0]
-  decoded = ''
+  decoded = +''
   encoded.each_char do |c|
     dec_char = (c.getbyte(0) - n).chr
     decoded << ((dec_char =~ /[a-z]/i) ? dec_char : c)
