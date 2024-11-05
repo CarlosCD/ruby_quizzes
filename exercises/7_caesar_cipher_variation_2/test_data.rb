@@ -13,6 +13,9 @@ TEST_DATA = {
               ['hnN', 'krr', 'u c', 'uxr', 'j!']      => 'Hello world!',
               ['hnN', 'krr', 'u c', 'uxr', 'j!'].to_s => 'Hello world!',
               ['zaA cfdp', 'nft B bo', 'e a cfdp', 'nft b, s', 'jhiu?'] =>
-                'Z becomes A and z becomes a, right?'
+                'Z becomes A and z becomes a, right?',
+              # Cases where the first character is not a letter:
+              ['ik1 k', 'u c x', "cnkf ", "uvtkp", "i"] => '1 is a valid string',
+              ["za1", "234", "567", "89A"] => '123456789Z'
             }
 TEST_FAILURE_EXTRA_DETAILS = ->(arg) { '' }

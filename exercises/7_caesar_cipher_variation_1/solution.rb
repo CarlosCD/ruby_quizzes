@@ -10,8 +10,11 @@ def encode_str(a)
   # n is the shift
   return [] if !u.is_a?(String) || u.empty?
   a = u.b # ASCII, just in case
+  # The first has to be a plain letter (a-z|A-Z), if there is any:
+  first = a.chars.find{|c| c =~ /[a-z]/i}
+  return [] if first.nil?
   # 2 first characters provide the shift number:
-  first = a[0].downcase
+  first = first.downcase
   encoded = [first, plain_letter_shift(first, n)].join
   # Encoding as a String:
   a.each_char{|c| encoded << plain_letter_shift(c, n) }
