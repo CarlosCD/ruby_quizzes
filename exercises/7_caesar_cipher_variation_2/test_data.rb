@@ -8,7 +8,6 @@ PARAM_TRANSFORMATION = ->(str) do
   str.gsub(/\A\s*\[\s*[\"\'](.*)[\"\']\]\s*\z/, '\1'). # prefix & suffix #=> 'za", "12", "34", "5A'
       split(/[\'\"],\s*[\'\"]/)                        # splits by ", " #=> ['za', '12', '34', '5A']'
 end
-TEST_FAILURE_EXTRA_DETAILS = ->(arg) { '' }
 TEST_DATA = {
               ['ijJ tipvme ibw', 'f lopxo uibu z', 'pv xpvme ibwf ', 'b qfsgfdu botx', 'fs gps nf!!!'] =>
                 'I should have known that you would have a perfect answer for me!!!',
@@ -23,3 +22,6 @@ TEST_DATA = {
               ['ik1 k', 'u c x', "cnkf ", "uvtkp", "i"] => '1 is a valid string',
               ["za1", "234", "567", "89A"] => '123456789Z'
             }
+
+# At the end, define the defaults:
+require_relative '../../utils/test_data_defaults'

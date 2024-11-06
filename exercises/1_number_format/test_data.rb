@@ -8,7 +8,6 @@ PARAM_TRANSFORMATION = ->(str) do
   number = 1_000_000_000 if number >= 1_000_000_000
   number
 end
-TEST_FAILURE_EXTRA_DETAILS = ->(arg) { '' }
 TEST_DATA = {
               0 => '0',
               1 => '1',
@@ -21,3 +20,6 @@ TEST_DATA = {
               35235235 => '35,235,235',
               1_000_000_000 => '1,000,000,000'
             }
+
+# At the end, define the defaults:
+require_relative '../../utils/test_data_defaults'

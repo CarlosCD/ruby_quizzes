@@ -2,7 +2,6 @@
 
 SOLUTION_METHOD_NAME = 'even_or_odd'
 PARAM_TRANSFORMATION = ->(str) { str.to_i }  # Expects an Integer
-TEST_FAILURE_EXTRA_DETAILS = ->(arg) { '' }
 TEST_DATA = {
               -2 => 'Even',
               -1 => 'Odd',
@@ -12,3 +11,6 @@ TEST_DATA = {
               11 => 'Odd',
               42 => 'Even'
             }
+
+# At the end, define the defaults:
+require_relative '../../utils/test_data_defaults'

@@ -5,7 +5,6 @@ PARAM_TRANSFORMATION = ->(str) do
   # Expects an Array of 4 numbers
   str.is_a?(String) ? str.gsub(/[\s\[\]]+/, '').split(',').collect(&:to_i)[0,4] : str
 end
-TEST_FAILURE_EXTRA_DETAILS = ->(arg) { '' }
 TEST_DATA = {
               # Vectors directed in one direction:
               [1, 1, 1, 1]   => true,
@@ -26,3 +25,6 @@ TEST_DATA = {
               [0, -67, 0, -989] => true,
               [-947, 0, 473, 0] => true
             }
+
+# At the end, define the defaults:
+require_relative '../../utils/test_data_defaults'

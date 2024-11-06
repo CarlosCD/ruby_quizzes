@@ -6,7 +6,6 @@ PARAM_TRANSFORMATION = ->(str) do
   s = str.is_a?(String) ? str.gsub(/[\s\[\]]+/, '').split(',').compact[0,2] : str
   [s.first, s.last.to_i]
 end
-TEST_FAILURE_EXTRA_DETAILS = ->(arg) { '' }
 TEST_DATA = {
               ['I should have known that you would have a perfect answer for me!!!', 1] =>
                 ['ijJ tipvme ibw', 'f lopxo uibu z', 'pv xpvme ibwf ', 'b qfsgfdu botx', 'fs gps nf!!!'],
@@ -23,3 +22,6 @@ TEST_DATA = {
               # Not valid, I need at least one letter to encode the shift:
               ['12345--#', 2] => []
             }
+
+# At the end, define the defaults:
+require_relative '../../utils/test_data_defaults'

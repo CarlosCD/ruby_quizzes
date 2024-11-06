@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 SOLUTION_METHOD_NAME = 'anagram'
-PARAM_TRANSFORMATION = ->(str) { str }  # Expects a String
-TEST_FAILURE_EXTRA_DETAILS = ->(arg) { '' }
 TEST_DATA = {
               'admits' => %w(admits amidst),
               'adolescence' => ['adolescence'],
@@ -17,3 +15,6 @@ TEST_DATA = {
               'luuz' => ['zulu'],
               'luz' => []
             }
+
+# At the end, define the defaults:
+require_relative '../../utils/test_data_defaults'

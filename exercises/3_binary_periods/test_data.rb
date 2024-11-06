@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-SOLUTION_METHOD_NAME = 'solution'
 PARAM_TRANSFORMATION = ->(str) { str.to_i }  # Expects an Integer
 TEST_FAILURE_EXTRA_DETAILS = ->(arg) { " (#{arg.to_s(2)})" }
 TEST_DATA = {
@@ -19,3 +18,6 @@ TEST_DATA = {
               15 => 1, # 1,1,1,1
               7 => 1 # 1,1,1
             }
+
+# At the end, define the defaults:
+require_relative '../../utils/test_data_defaults'
