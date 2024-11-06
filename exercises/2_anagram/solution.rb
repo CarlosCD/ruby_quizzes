@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Expects a String
 def anagram(word)
   dictionary_file = File.join(__dir__, 'words_list.txt')
   word_size = word.size

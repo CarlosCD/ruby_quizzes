@@ -5,10 +5,11 @@ Several coding exercises, short and mostly proposed by others.
 ## The exercises
 
 Each exercise is in its own folder under `exercises/`, and usually consist in three different files:
-- `README.md`: the exercise instructions, in Markdown format. What to be done.
+- `README.md`: the exercise instructions, in Markdown format. What it has to be done.
 - `test_data.rb`: some constants to test the solution and run benchmarks:
   + `TEST_DATA`: Some test data. Hash as `input => expected output`.
   + `SOLUTION_METHOD_NAME`: name of the method that does the work. It can be changed if decided.
+  + `PARAM_TRANSFORMATION`: as I will invoke the exercise from the command line (see below `run_solution.rb`), this is a lambda to transform an String argument (from the command line) into the class of the solution method argument (for example, a String '[1, 2, 3]' into the Array [1, 2, 3]).
   + `TEST_FAILURE_EXTRA_DETAILS`: a lambda to display extra details if a test fails.
 - `solution.rb`, or similar  (`solution_1.rb`, ...): a solution to the exercise. If you want to do the exercise, don't look here yet.
 
@@ -22,7 +23,10 @@ These are three Ruby executables at the root of this repository:
 - `tests.rb`: run the tests for a given exercise (passing the exercise folder), using the test data at `test_data.rb`. For now, it doesn't use RSpec or Minitest, it just compares results and shows "passed" or "failed". If more than one solution is present, or the file is not called `solution.rb`, the file with the solution should be passed as a second parameter.
 - `compare_solutions.rb`: passing the exercise folder, looks for solutions of the form `solution*.rb` (`solution_1.rb`, `solution_2.rb`, ...), and runs some benchmarks.
 
-Examples:
+For `run_solution.rb`, the parameter to use would be a single String, so the exercise tries to
+convert it to the data expected
+
+### Examples
 
     ./run_solution.rb 1_number_format 1000
       For '1000', the solution is '1,000'

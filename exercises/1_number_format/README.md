@@ -1,9 +1,16 @@
-Devise a function that takes an input `num` (Integer) and returns a String that is the
+# Number format
+
+Devise a function that takes an input `number` (an Integer) and returns a String that is the
 decimal representation of that number grouped by commas after every 3 digits. You can't
 solve the task using a built-in formatting function that can accomplish the whole
 task on its own.
 
-Assume: `0 <= num < 1_000_000_000`
+```Ruby
+# Expects a positive Integer lower than 1_000_000_000
+def pretty_number(number)
+  # ...
+end
+```
 
 Examples:
 

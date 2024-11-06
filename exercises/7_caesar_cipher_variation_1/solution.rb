@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
-def encode_str(a)
-  # Allow String as an argument:
-  arr = a.is_a?(String) ? (eval a rescue []) : a
-  return a if !arr.is_a?(Array) || arr.compact.size != 2
-  u, n = arr
-  n = n.to_i
+# Expects an Array with 2 elements: a String and an Integer
+def encode_str(arr)
   # u is the message to be encoded
   # n is the shift
+  u, n = arr
   return [] if !u.is_a?(String) || u.empty?
   a = u.b # ASCII, just in case
   # The first has to be a plain letter (a-z|A-Z), if there is any:

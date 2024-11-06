@@ -1,3 +1,5 @@
+# Binary periods
+
 A non-empty zero-indexed string `S` consisting of `Q` characters is given.  
 The period of this string `S` is the smallest positive integer `P` such that:
 
@@ -17,12 +19,16 @@ For example:
 its period is `4`.   
 On the other hand, `102`, in binary "1100110", does not have a binary period.
 
-Write a function that, given a positive integer `n`, returns the binary period of `n`.  
-The function should return `−1` if `n` does not have a binary period.
+Write a method that, given a positive integer `decimal_number`, returns the binary period of
+`decimal_number`.  
+The method should return `−1` if `decimal_number` does not have a binary period.
 
-    def solution(n)
-      # ...
-    end
+```Ruby
+# Expects an Integer
+def solution(decimal_number)
+  # ...
+end
+```
 
 For example, given `n = 955` the function should return 4, and given `n = 102` the function should
 return −1, as in the examples above.

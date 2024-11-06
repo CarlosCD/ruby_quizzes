@@ -14,19 +14,27 @@ For more information, check out this article on
 
 ## Problem Description
 
-Write the function `collinearity([x1, y1, x2, y2])`, which returns a Boolean type depending on
-whether the vectors are collinear or not.
+Write a method like:
 
-    all coordinates are integers
+```Ruby
+# Expects an Array of 4 numbers
+def collinearity([x1, y1, x2, y2])
+  # ...
+end
+```
+
+Returning a Boolean meaning whether the vectors `(x1,y1)`, `(x2,y2)` are collinear or not.
+
+    All coordinates are integers
     -1000 <= any coordinate <= 1000
 
 ## Notes
 
-All vectors start from the origin (x=0, y=0).
+All vectors start from the origin `(0, 0)`.
 
 Be careful when handling cases where x1, x2, y1, or y2 are zero to avoid division by zero errors.
 
-A vector with coordinates (0, 0) is collinear to all vectors.
+A vector with coordinates `(0, 0)` is collinear to all vectors.
 
 ## Examples
 

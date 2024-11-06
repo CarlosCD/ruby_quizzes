@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-# Decodes an Array of five strings:
-def decode(a)
-  # Allow String as an argument:
-  arr = a.is_a?(String) ? (eval a rescue []) : a
+# Expects an Array with 5 Strings
+def decode(arr)
   # Verify the argument is valid:
   return arr if !arr.is_a?(Array) || arr.size < 1 || arr.size > 5 || !arr.first.is_a?(String) || arr.first.size <= 2
   encoded = arr.join.b # ASCII String

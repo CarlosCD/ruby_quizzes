@@ -8,7 +8,7 @@ arguments_missing = "Pass these arguments:\n" \
 
 if ARGV.size > 0
   exercise_folder = ARGV[0]
-  argument = ARGV[1]
+  argument = ARGV[1]  # String
   solution = ARGV[2] || 'solution'
 else
   puts "\nError:\n" +
@@ -27,6 +27,10 @@ rescue Exception => e
   puts "Unable to find '#{exercise_path}test_data.rb'"
   puts "Are you sure that the exercise folder '#{exercise_folder}' is correct?"
   exit(1)
+end
+
+if argument && PARAM_TRANSFORMATION.is_a?(Proc)
+  argument = PARAM_TRANSFORMATION.call(argument)
 end
 
 require_relative 'utils/quizzes_utils'

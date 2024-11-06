@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 SOLUTION_METHOD_NAME = 'solution'
+PARAM_TRANSFORMATION = ->(str) { str.to_i }  # Expects an Integer
+TEST_FAILURE_EXTRA_DETAILS = ->(arg) { " (#{arg.to_s(2)})" }
 TEST_DATA = {
               1797753455250435 => -1, # 110011000110000110000011000000110000000110000000011
               11498610839207 => 9, # 101001110,101001110,101001110,101001110,10100111,10100111
@@ -17,4 +19,3 @@ TEST_DATA = {
               15 => 1, # 1,1,1,1
               7 => 1 # 1,1,1
             }
-TEST_FAILURE_EXTRA_DETAILS = ->(arg) { " (#{arg.to_s(2)})" }

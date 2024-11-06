@@ -2,11 +2,8 @@
 
 require 'matrix'
 
-# Expects either an Array or a String representing an Array
-def solution(a)
-  ary = a
-  # Allow String as an argument:
-  ary = a.is_a?(String) ? (eval a) : a
+# Expects an Array of numbers
+def solution(ary)
   return 0 unless ary.is_a?(Array)
   # Removing invalid moves:
   ary = ary.delete_if{|v| v <= 0}

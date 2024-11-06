@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-def collinearity(a)
-  # Allow String as an argument:
-  ary = a.is_a?(String) ? (eval a rescue []) : a
+# Expects an Array of 4 numbers
+def collinearity(ary)
   return false if !ary.is_a?(Array) || ary.compact.size != 4
   # Initialize:
   x1, x2, y1, y2 = ary

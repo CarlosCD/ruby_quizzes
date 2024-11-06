@@ -1,3 +1,5 @@
+# LOGO turtle interception
+
 A non-empty zero-indexed array `A` consisting of `N` positive integers is given.
 
 A LOGO turtle stands at (0,0) heading North. It moves A[0] steps forward and turns by 90 degrees
@@ -27,11 +29,14 @@ In the 7th and 9th moves the turtle touches its previous path, namely:
     at point (2,-1) in the 7th move,
     at point (-1,-1) in the 9th move
 
-Write a function in Ruby:
+Write a method in Ruby:
 
-    def solution(a)
-      # ...
-    end
+```Ruby
+# Expects an Array of numbers
+def solution(ary)
+  # ...
+end
+```
 
 Given a description of the turtle's walk in Array `a`, it should return the number of the first
 move in which the turtle touches its previous path, or 0 if no such situation occurs.

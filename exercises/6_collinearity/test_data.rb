@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 SOLUTION_METHOD_NAME = 'collinearity'
+PARAM_TRANSFORMATION = ->(str) do
+  # Expects an Array of 4 numbers
+  str.is_a?(String) ? str.gsub(/[\s\[\]]+/, '').split(',').collect(&:to_i)[0,4] : str
+end
+TEST_FAILURE_EXTRA_DETAILS = ->(arg) { '' }
 TEST_DATA = {
-              # Faulty data returns false:
-              nil             => false,
-              'Hello world!'  => false,
-              'puts "Hey!"'   => false,
-              [1, 2, 3]       => false,
-              [1, 2, 3, 4, 5] => false,
               # Vectors directed in one direction:
               [1, 1, 1, 1]   => true,
-              '[1, 1, 1, 1]' => true,  # Takes Strings as well, representing an Array
               [1, 2, 2, 4]   => true,
               # Vectors directed in opposite directions:
               [1, 1, 6, 1]   => false,
@@ -28,4 +26,3 @@ TEST_DATA = {
               [0, -67, 0, -989] => true,
               [-947, 0, 473, 0] => true
             }
-TEST_FAILURE_EXTRA_DETAILS = ->(arg) { '' }

@@ -45,5 +45,6 @@ end
 
 code_lambda = ->(arg) { send SOLUTION_METHOD_NAME, arg }
 TEST_DATA.each do |arg, result|
+  arg = PARAM_TRANSFORMATION.call(arg)
   QuizzesTests.test code_lambda, arg, result, error_extra: TEST_FAILURE_EXTRA_DETAILS
 end
