@@ -24,6 +24,31 @@ module QuizzesUtils
       Dir["#{exercise_path}solution*.rb"].collect{|n| n[exercise_path.size..-4]}
     end
 
+    # It assumes that test_data has been already required
+    #   Return nil if the method_name is not valid, or needed constants are not present
+    def method_details(method_name)
+      return nil if method_name.nil? || method_name.empty?
+      klass = self.class
+      %i(METHODS_MULTIPLE_ARITY PARAM_TRANSFORMATION TEST_DATA TEST_FAILURE_EXTRA_DETAILS).each do |c|
+        return nil unless klass.const_defined?(c)
+      end
+      return nil unless METHODS_MULTIPLE_ARITY.keys.include?(method_name.to_sym)
+      param_transformation = nil
+      test_data = nil
+      test_failure_extra_details = nil
+      %i(param_transformation test_data test_failure_extra_details).each do |const_name|
+        const_for_method = "#{const_name}_#{method_name}".upcase
+        const_name_upper = const_name.to_s.upcase
+        binding.local_variable_set(const_name, (klass.const_defined?(const_for_method)) ?
+          klass.const_get(const_for_method) :
+          klass.const_get(const_name_upper))
+      end
+      return nil if !param_transformation.is_a?(Proc) ||
+                    !test_data.is_a?(Hash) ||
+                    !test_failure_extra_details.is_a?(Proc)
+      [ param_transformation, test_data, test_failure_extra_details ]
+    end
+
     private
 
     def blank?(string_or_nil)

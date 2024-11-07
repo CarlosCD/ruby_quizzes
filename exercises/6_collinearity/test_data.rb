@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-SOLUTION_METHOD_NAME = 'collinearity'
-SOLUTION_METHOD_MULTIPLE_ARITY = true
+METHODS_MULTIPLE_ARITY = { collinearity: true }
 PARAM_TRANSFORMATION = ->(str) do
   # Could receive an Array of 4 numbers, or a String with 4 comma-separated numbers
   # Expects 4 numeric values

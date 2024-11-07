@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-SOLUTION_METHOD_NAME = 'anagram'
+METHODS_MULTIPLE_ARITY = { anagram: false }
 TEST_DATA = {
               'admits' => %w(admits amidst),
               'adolescence' => ['adolescence'],

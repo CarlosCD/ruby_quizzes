@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-SOLUTION_METHOD_NAME = 'even_or_odd'
+METHODS_MULTIPLE_ARITY = { even_or_odd: false }
 PARAM_TRANSFORMATION = ->(str) { str.to_i }  # Expects an Integer
 TEST_DATA = {
               -2 => 'Even',

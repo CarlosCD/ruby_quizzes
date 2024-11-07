@@ -7,9 +7,8 @@
 #
 
 {
-  SOLUTION_METHOD_NAME: 'solution',
-  SOLUTION_METHOD_MULTIPLE_ARITY: false,       # One single argument
-  PARAM_TRANSFORMATION: ->(str) { str },       # Expecting a String
+  METHODS_MULTIPLE_ARITY: { solution: false }, # One single argument
+  PARAM_TRANSFORMATION: ->(str) { str },  # Expecting a String
   TEST_FAILURE_EXTRA_DETAILS: ->(arg) { '' },
   TEST_DATA: { }
 }.each do |const, value|

@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-SOLUTION_METHOD_NAME = 'decode'
-PARAM_TRANSFORMATION = ->(str) do
+METHODS_MULTIPLE_ARITY = { decode: false }
+PARAM_TRANSFORMATION_DECODE = ->(str) do
   # Expects an Array with 5 Strings
   return str unless str.is_a?(String)
   # Example: '["za", "12", "34", "5A"]'
   str.gsub(/\A\s*\[\s*[\"\'](.*)[\"\']\]\s*\z/, '\1'). # prefix & suffix #=> 'za", "12", "34", "5A'
       split(/[\'\"],\s*[\'\"]/)                        # splits by ", " #=> ['za', '12', '34', '5A']'
 end
-TEST_DATA = {
+TEST_DATA_DECODE = {
               ['ijJ tipvme ibw', 'f lopxo uibu z', 'pv xpvme ibwf ', 'b qfsgfdu botx', 'fs gps nf!!!'] =>
                 'I should have known that you would have a perfect answer for me!!!',
               ['noOpx', ' zpv ', 'lopx ', 'zpvs ', 'BCDt!'] => 'Now you know your ABCs!',

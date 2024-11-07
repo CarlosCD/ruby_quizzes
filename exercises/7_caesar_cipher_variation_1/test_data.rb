@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-SOLUTION_METHOD_NAME = 'encode_str'
-SOLUTION_METHOD_MULTIPLE_ARITY = true
-PARAM_TRANSFORMATION = ->(str) do
+METHODS_MULTIPLE_ARITY = { encode_str: true }
+PARAM_TRANSFORMATION_ENCODE_STR = ->(str) do
   return str unless str.is_a?(String)
   # Expects 2 arguments: a String and an Integer
   #   Formats supported in the command line argument:
@@ -18,7 +17,7 @@ PARAM_TRANSFORMATION = ->(str) do
   s = s.gsub(r2, '\\1')
   [ s, n.to_i ]
 end
-TEST_DATA = {
+TEST_DATA_ENCODE_STR = {
               ['I should have known that you would have a perfect answer for me!!!', 1] =>
                 ['ijJ tipvme ibw', 'f lopxo uibu z', 'pv xpvme ibwf ', 'b qfsgfdu botx', 'fs gps nf!!!'],
               ['Now you know your ABCs!', 1] => ['noOpx', ' zpv ', 'lopx ', 'zpvs ', 'BCDt!'],

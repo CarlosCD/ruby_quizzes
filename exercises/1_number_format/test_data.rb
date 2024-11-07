@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-SOLUTION_METHOD_NAME = 'pretty_number'
+METHODS_MULTIPLE_ARITY = { pretty_number: false }
 PARAM_TRANSFORMATION = ->(str) do
   # Expects a positive Integer lower than 1_000_000_000
   number = str.to_i

@@ -43,14 +43,25 @@ rescue Exception => e
   exit(1)
 end
 
-code_lambda = ->(args) do
-  if SOLUTION_METHOD_MULTIPLE_ARITY
-    send SOLUTION_METHOD_NAME, *args
-  else
-    send SOLUTION_METHOD_NAME, args
+methods = METHODS_MULTIPLE_ARITY.keys
+
+METHODS_MULTIPLE_ARITY.each do |method_name, splat_arguments|
+  code_lambda = ->(args) do
+    if splat_arguments
+      send method_name, *args
+    else
+      send method_name, args
+    end
   end
-end
-TEST_DATA.each do |arg, result|
-  arg = PARAM_TRANSFORMATION.call(arg)
-  QuizzesTests.test code_lambda, arg, result, error_extra: TEST_FAILURE_EXTRA_DETAILS
+  # method-specific details, if there is more than one method:
+  details = QuizzesUtils.method_details(method_name)
+  unless details
+    puts 'Unable to read the test data'
+    exit(1)
+  end
+  param_transformation, test_data, test_failure_extra_details = details
+  test_data.each do |arg, result|
+    arg = param_transformation.call(arg)
+    QuizzesTests.test code_lambda, arg, result, error_extra: test_failure_extra_details
+  end
 end

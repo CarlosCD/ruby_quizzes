@@ -28,18 +28,42 @@ end
 
 require_relative "#{exercise_path}test_data"
 
-solution_names.each do |solution_name|
-  require_relative "#{exercise_path}#{solution_name}"
-  eval "alias #{solution_name} #{SOLUTION_METHOD_NAME}"
+methods_details = {}
+METHODS_MULTIPLE_ARITY.each do |m, s|
+  details = QuizzesUtils.method_details(m)
+  unless details.nil?
+    methods_details[m] = { splat_arguments: s }
+    methods_details[m][:param_transformation], methods_details[m][:test_data], methods_details[m][:test_failure_extra_details] = details
+    methods_details[m][:test_data] = methods_details[m][:test_data].keys
+  end
 end
 
-test_data = TEST_DATA.keys
+solution_names.each do |solution_name|
+  require_relative "#{exercise_path}#{solution_name}"
+  methods_details.keys.each do |m|
+    eval "alias #{solution_name}_#{m} #{m}"
+  end
+end
 
 puts "\nBenchmarks for '#{exercise_folder}':\n\n"
 Benchmark.bmbm do |x|
-  solution_names.each do |solution_name|
-    x.report(solution_name + ':') do
-      test_data.each{|n| send(solution_name, n)}
+  methods_details.keys.each do |m|
+    transformer = methods_details[m][:param_transformation]
+    transform_it = transformer.is_a?(Proc)
+    splat_it = methods_details[m][:splat_arguments]
+    test_data = methods_details[m][:test_data]
+    solution_names.each do |solution_name|
+      method_name = "#{solution_name}_#{m}"
+      x.report("#{method_name}:") do
+        test_data.each do |n|
+          args = transform_it ? transformer.call(n) : n
+          if splat_it
+            send method_name, *args
+          else
+            send method_name, args
+          end
+        end
+      end
     end
   end
 end
