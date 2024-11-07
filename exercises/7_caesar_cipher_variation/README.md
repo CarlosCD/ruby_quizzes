@@ -48,9 +48,11 @@ See [Caesar cipher](https://en.wikipedia.org/wiki/Caesar_cipher).
 
 ## Exercise two methods
 
-For now, I am splitting this exercise in two, for the two functions:
+This exercise has two methods, that can be run and be tested independently.
 
-- `encode` method, as part 1: at `exercises/7_caesar_cipher_variation_1`
+For now, I am splitting this exercise in two:
+
+- `encode` method, as part 1: at `exercises/7_caesar_cipher_variation`
 
 ```Ruby
 # Expects 2 arguments: a String and an Integer
