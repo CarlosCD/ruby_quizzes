@@ -69,27 +69,20 @@ Benchmark.bmbm do |x|
 end
 puts
 
-# Example results, Ruby 3.3.5 (without the GC rehearsal):
+# Example results, Ruby 3.3.5:
 #
-# 1_1_number_format:
+# Benchmarks for '7_caesar_cipher_variation':
 #
-#                 user     system      total        real
-# solution:   0.000024   0.000001   0.000025 (  0.000024)
+# Rehearsal -------------------------------------------------------------------
+# solution_encode_str:              0.000116   0.000005   0.000121 (  0.000121)
+# solution_with_sleep_encode_str:   0.000431   0.000024   0.000455 (  0.001583)
+# solution_decode:                  0.000090   0.000000   0.000090 (  0.000091)
+# solution_with_sleep_decode:       0.000096   0.000013   0.000109 (  0.001234)
+# ---------------------------------------------------------- total: 0.000775sec
 #
-#
-# 1_2_anagrams:
-#
-#                   user     system      total        real
-# solution_1:   0.157341   0.003710   0.161051 (  0.161087)
-# solution_2:   0.155183   0.003695   0.158878 (  0.158943)
-# solution_3:   0.026508   0.000817   0.027325 (  0.027340)
-#
-#
-# 1_3_string_periods:
-#
-#                   user     system      total        real
-# solution_1:   0.000175   0.000004   0.000179 (  0.000178)
-# solution_2:   0.000189   0.000001   0.000190 (  0.000189)
-# solution_3:   0.000024   0.000000   0.000024 (  0.000025)
-# solution_4:   0.000019   0.000000   0.000019 (  0.000019)
+#                                       user     system      total        real
+# solution_encode_str:              0.000117   0.000000   0.000117 (  0.000117)
+# solution_with_sleep_encode_str:   0.000118   0.000031   0.000149 (  0.001282)
+# solution_decode:                  0.000075   0.000000   0.000075 (  0.000075)
+# solution_with_sleep_decode:       0.000077   0.000023   0.000100 (  0.001228)
 #
