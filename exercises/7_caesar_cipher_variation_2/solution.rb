@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-# Expects an Array with 5 Strings
+# Expects an Array with 3-5 Strings
 def decode(arr)
   # Verify the argument is valid:
-  return arr if !arr.is_a?(Array) || arr.size < 1 || arr.size > 5 || !arr.first.is_a?(String) || arr.first.size <= 2
+  return arr if !arr.is_a?(Array) || arr.size < 1 || arr.size > 5 || !arr.first.is_a?(String)
   encoded = arr.join.b # ASCII String
+  return arr if encoded.size <= 2
   prefix = encoded.slice!(0,2).bytes
   n = prefix[1] - prefix[0]
   encoded.each_char.map{|c| plain_letter_shift(c, -n) }.join

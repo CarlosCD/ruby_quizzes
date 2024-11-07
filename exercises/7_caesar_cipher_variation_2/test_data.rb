@@ -14,10 +14,13 @@ TEST_DATA = {
               ['noOpx', ' zpv ', 'lopx ', 'zpvs ', 'BCDt!'] => 'Now you know your ABCs!',
               ['ttThe sam', 'e sentenc', 'e, but sp', 'lit in 5 ', 'chunks'] =>
                 'The same sentence, but split in 5 chunks',
+              # Less than 5 chunks (small String):
+              ['a','c','C'] => 'A',
               # Checking letters cycle (if shift is 1, Z => A, z => a):
               ['zaA cfdp', 'nft B bo', 'e a cfdp', 'nft b, s', 'jhiu?'] =>
                 'Z becomes A and z becomes a, right?',
               ['hnN', 'krr', 'u c', 'uxr', 'j!'] => 'Hello world!',
+              ['z','a','A'] => 'Z',
               # Cases where the first character is not a letter:
               ['ik1 k', 'u c x', "cnkf ", "uvtkp", "i"] => '1 is a valid string',
               ["za1", "234", "567", "89A"] => '123456789Z'

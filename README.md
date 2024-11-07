@@ -9,6 +9,7 @@ Each exercise is in its own folder under `exercises/`, and usually consist in th
 - `test_data.rb`: some constants to test the solution and run benchmarks:
   + `TEST_DATA`: Some test data. Hash as `input => expected output`.
   + `SOLUTION_METHOD_NAME`: name of the method that does the work. It can be changed if decided.
+  + `SOLUTION_METHOD_MULTIPLE_ARITY`: boolean, whether the solution method takes one or several arguments.
   + `PARAM_TRANSFORMATION`: as I will invoke the exercise from the command line (see below `run_solution.rb`), this is a lambda to transform an String argument (from the command line) into the class of the solution method argument (for example, a String '[1, 2, 3]' into the Array [1, 2, 3]).
   + `TEST_FAILURE_EXTRA_DETAILS`: a lambda to display extra details if a test fails.
 - `solution.rb`, or similar  (`solution_1.rb`, ...): a solution to the exercise. If you want to do the exercise, don't look here yet.

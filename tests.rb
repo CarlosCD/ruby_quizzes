@@ -43,7 +43,13 @@ rescue Exception => e
   exit(1)
 end
 
-code_lambda = ->(arg) { send SOLUTION_METHOD_NAME, arg }
+code_lambda = ->(args) do
+  if SOLUTION_METHOD_MULTIPLE_ARITY
+    send SOLUTION_METHOD_NAME, *args
+  else
+    send SOLUTION_METHOD_NAME, args
+  end
+end
 TEST_DATA.each do |arg, result|
   arg = PARAM_TRANSFORMATION.call(arg)
   QuizzesTests.test code_lambda, arg, result, error_extra: TEST_FAILURE_EXTRA_DETAILS

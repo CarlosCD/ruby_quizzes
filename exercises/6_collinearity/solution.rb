@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
-# Expects an Array of 4 numbers
-def collinearity(ary)
-  return false if !ary.is_a?(Array) || ary.compact.size != 4
-  # Initialize:
-  x1, x2, y1, y2 = ary
+# Expects 4 numeric values
+def collinearity(x1, x2, y1, y2)
   if x1 == 0 || x2 == 0 || y1 == 0 || y2 == 0
     return  (x1 == 0 && y1 == 0) || (x2 == 0 && y2 == 0) || # Origin is collinear
             (x1 == 0 && x2 == 0) || (y1 == 0 && y2 == 0)    # x's or y's are both zero (any factor)

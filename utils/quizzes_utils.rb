@@ -2,12 +2,17 @@
 
 module QuizzesUtils
   class << self
-    def examples_message_run(sample_values = [], value = nil, exercise_folder: '1_1_number_format')
+    def examples_message_run(sample_values = [], value = nil, splat_arguments: false,
+                             exercise_folder: '1_1_number_format')
       arg = value unless blank?(value)
       exercise_path = "exercises/#{exercise_folder}/"
       "Examples:\n" +
         available_solutions(exercise_path).
-          collect{|s| "  run_solution.rb #{exercise_folder} #{arg || sample_values.sample} #{s}"}.join("\n") +
+          collect do |s|
+            argument = arg || sample_values.sample
+            argument = "'" + argument.join(', ') + "'" if splat_arguments
+            "  .\/run_solution.rb #{exercise_folder} #{argument} #{s}"
+          end.join("\n") +
         "\n\n"
     end
 

@@ -39,7 +39,8 @@ unless argument
   puts "\n" \
        "Please pass at least one argument with the data to use " \
        "(and if there is more than one solution, the solution file).\n" +
-       QuizzesUtils.examples_message_run(TEST_DATA.keys, exercise_folder:)
+       QuizzesUtils.examples_message_run(TEST_DATA.keys, exercise_folder:,
+                                         splat_arguments: SOLUTION_METHOD_MULTIPLE_ARITY)
   exit(1)
 end
 
@@ -64,8 +65,14 @@ rescue Exception => e
   puts "\n" \
        "Error: #{e}\n\n" +
        arguments_missing +
-       QuizzesUtils.examples_message_run(TEST_DATA.keys, argument, exercise_folder:)
+       QuizzesUtils.examples_message_run(TEST_DATA.keys, argument, exercise_folder:,
+                                         splat_arguments: SOLUTION_METHOD_MULTIPLE_ARITY)
   exit(1)
 end
 
-puts "For '#{argument}', the solution is '#{send SOLUTION_METHOD_NAME, argument}'"
+result = if SOLUTION_METHOD_MULTIPLE_ARITY
+           send SOLUTION_METHOD_NAME, *argument
+         else
+           send SOLUTION_METHOD_NAME, argument
+         end
+puts "For '#{argument}', the solution is '#{result}'"

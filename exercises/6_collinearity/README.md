@@ -17,8 +17,8 @@ For more information, check out this article on
 Write a method like:
 
 ```Ruby
-# Expects an Array of 4 numbers
-def collinearity([x1, y1, x2, y2])
+# Expects 4 numeric values
+def collinearity(x1, y1, x2, y2)
   # ...
 end
 ```
