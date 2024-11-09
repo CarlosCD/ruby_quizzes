@@ -11,8 +11,18 @@ TEST_DATA = {
               'eric' => %w(eric rice),
               'horse' => %w(heros horse shore),
               'rescue' => %w(rescue secure),
+              # 7 chars, max. number of words in the file with this size (3,617 words):
+              'abandon' => ['abandon'],
+              'abdomen' => ['abdomen'],
+              'zoology' => ['zoology'],
+              'zooming' => ['zooming'],
+              # 20 chars, min. number of words in the file with this size (2 words):
+              'institutionalization' => ['institutionalization'],
+              'internationalization' => ['internationalization'],
+              # Only one spelling in the file:
               'zulu' => ['zulu'],
               'luuz' => ['zulu'],
+              # Not in file (min. length of the words in file is 4 chars):
               'luz' => []
             }
 
