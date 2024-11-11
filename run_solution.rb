@@ -56,7 +56,7 @@ unless details
   puts 'Unable to read the test data'
   exit(1)
 end
-param_transformation, test_data, test_failure_extra_details = details
+param_transformation, test_data = details
 
 if argument && param_transformation.is_a?(Proc)
   argument = param_transformation.call(argument)

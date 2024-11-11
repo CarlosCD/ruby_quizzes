@@ -4,30 +4,28 @@ Several coding exercises, short and mostly proposed by others.
 
 **Table of contents**
 - [The exercises](#the-exercises)
-- [Testing and running the exercises](#testing-and-running-the-exercises)
+- [Running and benchmarking solutions](#running-and-benchmarking-solutions)
   + [Examples](#examples)
-- [Testing via Minitest specs](#testing-via-minitest-specs)
+- [Tests](#tests)
 
 
 ## The exercises
 
 Each exercise is in its own folder under `exercises/`, and usually consist in three different files:
 - `README.md`: the exercise instructions, in Markdown format. What it has to be done.
-- `test_data.rb`: some constants to test the solution and run benchmarks:
-  + `TEST_DATA`: Some test data. Hash as `input => expected output`.
+- `test_data.rb`: some constants to run the solution and benchmarks:
+  + `TEST_DATA`: Some test data for benchmarking. Hash with the shape `input => expected output`.
   + `METHODS_MULTIPLE_ARITY `: A Hash with the name(s) of the method(s) that do the work, as keys, and as a value, a boolean, whether the solution method takes one or several arguments.
   + `PARAM_TRANSFORMATION`: as I will invoke the exercise from the command line (see below `run_solution.rb`), this is a lambda to transform an String argument (from the command line) into the class of the solution method argument (for example, a String '[1, 2, 3]' into the Array [1, 2, 3]).
-  + `TEST_FAILURE_EXTRA_DETAILS`: a lambda to display extra details if a test fails.
 - `solution.rb`, or similar  (`solution_1.rb`, ...): a solution to the exercise. If you want to do the exercise, don't look here yet.
 
 We could have more than one solution. There is an executable to run some performance benchmarks
 (see below).
 
-## Testing and running the exercises
+## Running and benchmarking solutions
 
-These are three Ruby executables at the root of this repository:
+These are two Ruby executables at the root of this repository:
 - `run_solution.rb`: passing the exercise folder and an input value, tries to execute the exercise. If more than one is present, or the file is not called `solution.rb`, the file name with the solution can be passed as a third parameter.
-- `tests.rb`: run the tests for a given exercise (passing the exercise folder), using the test data at `test_data.rb`. For now, it doesn't use RSpec or Minitest, it just compares results and shows "passed" or "failed". If more than one solution is present, or the file is not called `solution.rb`, the file with the solution should be passed as a second parameter.
 - `compare_solutions.rb`: passing the exercise folder, looks for solutions of the form `solution*.rb` (`solution_1.rb`, `solution_2.rb`, ...), and runs some benchmarks.
 
 For `run_solution.rb`, the parameter to use would be a single String, so the exercise tries to
@@ -46,21 +44,6 @@ convert it to the data expected
 
     ./run_solution.rb 7_caesar_cipher_variation '["lmm", "bmb", "mbm", "bmb"]' decode 
       For '["lmm", "bmb", "mbm", "bmb"]', the solution is 'lalalalala'
-
-
-    ./tests.rb 2_anagram
-      passed
-      passed
-      passed
-      passed
-      passed
-      passed
-      passed
-      passed
-      passed
-      passed
-      passed
-      passed
 
 In the case of `compare_solutions.rb`, I only have one solution at this moment:
 
@@ -95,12 +78,10 @@ through the Git history):
       solution_3:   0.000028   0.000010   0.000038 (  0.000039)
       solution_4:   0.000022   0.000000   0.000022 (  0.000022)
 
-## Testing via Minitest specs
+## Tests
 
-I added a `Gemfile` and Minitest specs, with the idea of later make testing and benchmarking
-solutions a bit simpler.
-
-To run all the specs (and report on code coverage), first run `bundle`, and then `rake`:
+I added a `Gemfile` and Minitest specs. To run all the specs (and report on code coverage), first
+run `bundle`, and then `rake`:
 
 ```Ruby
 rake

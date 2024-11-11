@@ -9,7 +9,6 @@
 {
   METHODS_MULTIPLE_ARITY: { solution: false }, # One single argument
   PARAM_TRANSFORMATION: ->(str) { str },  # Expecting a String
-  TEST_FAILURE_EXTRA_DETAILS: ->(arg) { '' },
   TEST_DATA: { }
 }.each do |const, value|
   self.class.const_set(const, value) unless self.class.const_defined?(const)

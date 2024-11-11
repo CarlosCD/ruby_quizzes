@@ -16,10 +16,6 @@ module QuizzesUtils
         "\n\n"
     end
 
-    def examples_message_test
-      available_solutions.collect{|s| "  tests.rb #{s}"}.join("\n") + "\n\n"
-    end
-
     def find_solutions(exercise_path = caller_directory)
       Dir["#{exercise_path}solution*.rb"].collect{|n| n[exercise_path.size..-4]}
     end
@@ -29,14 +25,13 @@ module QuizzesUtils
     def method_details(method_name)
       return nil if method_name.nil? || method_name.empty?
       klass = self.class
-      %i(METHODS_MULTIPLE_ARITY PARAM_TRANSFORMATION TEST_DATA TEST_FAILURE_EXTRA_DETAILS).each do |c|
+      %i(METHODS_MULTIPLE_ARITY PARAM_TRANSFORMATION TEST_DATA).each do |c|
         return nil unless klass.const_defined?(c)
       end
       return nil unless METHODS_MULTIPLE_ARITY.keys.include?(method_name.to_sym)
       param_transformation = nil
       test_data = nil
-      test_failure_extra_details = nil
-      %i(param_transformation test_data test_failure_extra_details).each do |const_name|
+      %i(param_transformation test_data).each do |const_name|
         const_for_method = "#{const_name}_#{method_name}".upcase
         const_name_upper = const_name.to_s.upcase
         binding.local_variable_set(const_name, (klass.const_defined?(const_for_method)) ?
@@ -44,9 +39,8 @@ module QuizzesUtils
           klass.const_get(const_name_upper))
       end
       return nil if !param_transformation.is_a?(Proc) ||
-                    !test_data.is_a?(Hash) ||
-                    !test_failure_extra_details.is_a?(Proc)
-      [ param_transformation, test_data, test_failure_extra_details ]
+                    !test_data.is_a?(Hash)
+      [ param_transformation, test_data ]
     end
 
     private

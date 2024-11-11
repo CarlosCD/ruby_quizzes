@@ -33,7 +33,7 @@ METHODS_MULTIPLE_ARITY.each do |m, s|
   details = QuizzesUtils.method_details(m)
   unless details.nil?
     methods_details[m] = { splat_arguments: s }
-    methods_details[m][:param_transformation], methods_details[m][:test_data], methods_details[m][:test_failure_extra_details] = details
+    methods_details[m][:param_transformation], methods_details[m][:test_data] = details
     methods_details[m][:test_data] = methods_details[m][:test_data].keys
   end
 end
