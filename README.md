@@ -2,6 +2,13 @@
 
 Several coding exercises, short and mostly proposed by others.
 
+**Table of contents**
+- [The exercises](#the-exercises)
+- [Testing and running the exercises](#testing-and-running-the-exercises)
+  + [Examples](#examples)
+- [Testing via Minitest specs](#testing-via-minitest-specs)
+
+
 ## The exercises
 
 Each exercise is in its own folder under `exercises/`, and usually consist in three different files:
@@ -87,3 +94,51 @@ through the Git history):
       solution_2:   0.000228   0.000012   0.000240 (  0.000241)
       solution_3:   0.000028   0.000010   0.000038 (  0.000039)
       solution_4:   0.000022   0.000000   0.000022 (  0.000022)
+
+## Testing via Minitest specs
+
+I added a `Gemfile` and Minitest specs, with the idea of later make testing and benchmarking
+solutions a bit simpler.
+
+To run all the specs (and report on code coverage), first run `bundle`, and then `rake`:
+
+```Ruby
+rake
+  Run options: --seed 11292
+
+  # Running:
+
+  ..........
+
+  Finished in 0.115710s, 86.4230 runs/s, 881.5141 assertions/s.
+
+  10 runs, 102 assertions, 0 failures, 0 errors, 0 skips
+  Coverage report generated for RSpec to /Users/.../ruby_quizzes/coverage.
+  Line Coverage: 100.0% (193 / 193)
+```
+
+The coverage line lies (it is not using RSpec). Open the coverage details in your web browser,
+`coverage/index.html` by, for example:
+
+```Shell
+open coverage/index.html
+```
+
+The tests can also run independently, for example:
+
+```Ruby
+rake test TEST=spec/7_caesar_cipher_variation_spec.rb
+  Run options: --seed 10560
+
+  # Running:
+
+  ..
+
+  Finished in 0.001003s, 1994.0180 runs/s, 18943.1714 assertions/s.
+
+  2 runs, 19 assertions, 0 failures, 0 errors, 0 skips
+  Coverage report generated for RSpec to /Users/.../ruby_quizzes/coverage.
+  Line Coverage: 100.0% (22 / 22)
+```
+
+See the specs available under the `spec/` folder`.

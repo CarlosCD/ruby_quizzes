@@ -3,4 +3,4 @@
 source 'https://rubygems.org'
 
 gem 'minitest'
-gem 'simplecov'
+gem 'simplecov', require: false
