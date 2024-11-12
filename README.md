@@ -86,46 +86,36 @@ through the Git history):
 
 ## Tests
 
-I added a `Gemfile` and Minitest specs. To run all the specs (and report on code coverage), first
-run `bundle`, and then `rake`:
+It uses Minitest with the Specs DSL. Run `bundle` to set it up.
+
+To run all the specs, run `rake`:
 
 ```Shell
 rake
-  Run options: --seed 11292
+  Run options: --seed 51435
 
   # Running:
 
-  ..........
+  .........
 
-  Finished in 0.117563s, 85.0608 runs/s, 867.6199 assertions/s..
+  Finished in 0.113061s, 79.6030 runs/s, 902.1679 assertions/s.
 
-  10 runs, 102 assertions, 0 failures, 0 errors, 0 skips
-  Coverage report generated for RSpec to /Users/.../ruby_quizzes/coverage.
-  Line Coverage: 100.0% (97 / 97)
+  9 runs, 102 assertions, 0 failures, 0 errors, 0 skips
 ```
 
-The coverage line lies (it is not using RSpec). Open the coverage details in your web browser,
-`coverage/index.html` by, for example:
-
-```Shell
-open coverage/index.html
-```
-
-The tests can also run independently, for example:
+The tests can also be run independently, for each exercise:
 
 ```Shell
 rake test TEST=spec/7_caesar_cipher_variation_spec.rb
-  Run options: --seed 10560
+  Run options: --seed 62243
 
   # Running:
 
-  ..
+  .
 
-  Finished in 0.001003s, 1994.0180 runs/s, 18943.1714 assertions/s.
+  Finished in 0.000786s, 1272.2644 runs/s, 24173.0229 assertions/s.
 
-  2 runs, 19 assertions, 0 failures, 0 errors, 0 skips
-  Coverage report generated for RSpec to /Users/.../ruby_quizzes/coverage.
-  Line Coverage: 100.0% (22 / 22)
+  1 runs, 19 assertions, 0 failures, 0 errors, 0 skips
 ```
 
-See the specs available under the `spec/` folder`.
+See the exercises' specs under the `spec/` folder`.
