@@ -92,30 +92,30 @@ To run all the specs, run `rake`:
 
 ```Shell
 rake
-  Run options: --seed 51435
+  Run options: --seed 33218
 
   # Running:
 
-  .........
+  ..........
 
-  Finished in 0.113061s, 79.6030 runs/s, 902.1679 assertions/s.
+  Finished in 0.110904s, 90.1681 runs/s, 919.7143 assertions/s.
 
-  9 runs, 102 assertions, 0 failures, 0 errors, 0 skips
+  10 runs, 102 assertions, 0 failures, 0 errors, 0 skips
 ```
 
 The tests can also be run independently, for each exercise:
 
 ```Shell
 rake test TEST=spec/7_caesar_cipher_variation_spec.rb
-  Run options: --seed 62243
+  Run options: --seed 37685
 
   # Running:
 
-  .
+  ..
 
-  Finished in 0.000786s, 1272.2644 runs/s, 24173.0229 assertions/s.
+  Finished in 0.000713s, 2805.0488 runs/s, 26647.9636 assertions/s.
 
-  1 runs, 19 assertions, 0 failures, 0 errors, 0 skips
+  2 runs, 19 assertions, 0 failures, 0 errors, 0 skips
 ```
 
 See the exercises' specs under the `spec/` folder`.
