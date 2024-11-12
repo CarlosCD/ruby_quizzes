@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 # Expects a String
-def anagram(word)
-  dictionary_file = File.join(__dir__, 'words_list.txt')
+#   Optional parameter (useful for testing): the path to 'words_list.txt' file
+def anagram(word, words_list = File.join(__dir__, 'words_list.txt'))
+  dictionary_file = words_list
   word_size = word.size
   # Only words with the size as the target:
   small_dictionary = File.open(dictionary_file).readlines("\n").

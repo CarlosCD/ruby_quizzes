@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 
 describe 'Exercise 6_collinearity' do
   before do
-    # Creates a class as SolutionClass:NumberFormat with the solution's code:
+    # Creates a class as SolutionClass:Collinearity with the solution's code:
     @solution_class = SolutionClass.create_wrapping_class_for '6_collinearity'
   end
 

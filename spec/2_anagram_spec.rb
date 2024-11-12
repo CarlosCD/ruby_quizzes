@@ -4,9 +4,10 @@ require_relative 'spec_helper'
 
 describe 'Exercise 2_anagram' do
   before do
-    # Other exercises could be using the same method name:
-    require_relative '../exercises/2_anagram/solution'
-    alias solution_2 anagram
+    # Creates a class as SolutionClass::Anagram with the solution's code:
+    @solution_class = SolutionClass.create_wrapping_class_for '2_anagram'
+    # Extra detail, needed to locate the 'words_list.txt' file from here:
+    @words_list = File.join(__dir__, '../exercises/2_anagram/words_list.txt')
   end
 
   describe '#anagram' do
@@ -39,7 +40,8 @@ describe 'Exercise 2_anagram' do
 
     it 'sample cases match' do
       sample_data.each do |arg, result|
-        assert_equal(result, solution_2(arg), "#{arg} should output #{result}")
+        assert_equal(result, @solution_class.anagram(arg, @words_list),
+                     "#{arg} should output #{result}")
       end
     end
   end

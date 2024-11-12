@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 
 describe 'Exercise 5_even_or_odd' do
   before do
-    # Creates a class as SolutionClass:NumberFormat with the solution's code:
+    # Creates a class as SolutionClass:EvenOrOdd with the solution's code:
     @solution_class = SolutionClass.create_wrapping_class_for '5_even_or_odd'
   end
 

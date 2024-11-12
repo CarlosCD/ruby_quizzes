@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 
 describe 'Exercise 8_binary_multiple_of_3' do
   before do
-    # Creates a class as SolutionClass:NumberFormat with the solution's code:
+    # Creates a class as SolutionClass:BinaryMultipleOf3 with the solution's code:
     @solution_class = SolutionClass.create_wrapping_class_for '8_binary_multiple_of_3'
   end
 
