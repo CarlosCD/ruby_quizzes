@@ -4,9 +4,8 @@ require_relative 'spec_helper'
 
 describe 'Exercise 9_valid_sudoku' do
   before do
-    # Other exercises could be using the same method name:
-    require_relative '../exercises/9_valid_sudoku/solution'
-    alias solution_9 solution
+    # Creates a class as SolutionClass:NumberFormat with the solution's code:
+    @solution_class = SolutionClass.create_wrapping_class_for '9_valid_sudoku'
   end
 
   describe '#solution' do
@@ -56,7 +55,7 @@ describe 'Exercise 9_valid_sudoku' do
 
     it 'sample cases match' do
       sample_data.each do |arg, result|
-        assert_equal(result, solution_9(arg), "#{arg} should output #{result}")
+        assert_equal(result, @solution_class.solution(arg), "#{arg} should output #{result}")
       end
     end
   end

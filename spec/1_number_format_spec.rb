@@ -4,9 +4,8 @@ require_relative 'spec_helper'
 
 describe 'Exercise 1_number_format solution' do
   before do
-    # Other exercises could be using the same method name:
-    require_relative '../exercises/1_number_format/solution'
-    alias solution_1 pretty_number
+    # Creates a class as SolutionClass:NumberFormat with the solution's code:
+    @solution_class = SolutionClass.create_wrapping_class_for '1_number_format'
   end
 
   describe '#pretty_number' do
@@ -27,7 +26,7 @@ describe 'Exercise 1_number_format solution' do
 
     it 'sample cases match' do
       sample_data.each do |arg, result|
-        assert_equal(result, solution_1(arg), "#{arg} should output #{result}")
+        assert_equal(result, @solution_class.pretty_number(arg), "#{arg} should output #{result}")
       end
     end
   end

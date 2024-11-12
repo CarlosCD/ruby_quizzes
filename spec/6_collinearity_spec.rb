@@ -4,9 +4,8 @@ require_relative 'spec_helper'
 
 describe 'Exercise 6_collinearity' do
   before do
-    # Other exercises could be using the same method name:
-    require_relative '../exercises/6_collinearity/solution'
-    alias solution_6 collinearity
+    # Creates a class as SolutionClass:NumberFormat with the solution's code:
+    @solution_class = SolutionClass.create_wrapping_class_for '6_collinearity'
   end
 
   describe '#collinearity' do
@@ -35,7 +34,7 @@ describe 'Exercise 6_collinearity' do
 
     it 'sample cases match' do
       sample_data.each do |arg, result|
-        assert_equal(result, solution_6(*arg), "#{arg} should output #{result}")
+        assert_equal(result, @solution_class.collinearity(*arg), "#{arg} should output #{result}")
       end
     end
   end

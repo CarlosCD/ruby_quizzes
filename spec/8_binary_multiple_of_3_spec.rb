@@ -4,9 +4,8 @@ require_relative 'spec_helper'
 
 describe 'Exercise 8_binary_multiple_of_3' do
   before do
-    # Other exercises could be using the same method name:
-    require_relative '../exercises/8_binary_multiple_of_3/solution'
-    alias solution_8 multipleOf3Regex
+    # Creates a class as SolutionClass:NumberFormat with the solution's code:
+    @solution_class = SolutionClass.create_wrapping_class_for '8_binary_multiple_of_3'
   end
 
   describe '#multipleOf3Regex' do
@@ -27,7 +26,7 @@ describe 'Exercise 8_binary_multiple_of_3' do
 
     it 'sample cases match' do
       sample_data.each do |arg, result|
-        assert_equal(result, solution_8(arg), "#{arg} should output #{result}")
+        assert_equal(result, @solution_class.multipleOf3Regex(arg), "#{arg} should output #{result}")
       end
     end
   end

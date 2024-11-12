@@ -4,9 +4,8 @@ require_relative 'spec_helper'
 
 describe 'Exercise 5_even_or_odd' do
   before do
-    # Other exercises could be using the same method name:
-    require_relative '../exercises/5_even_or_odd/solution'
-    alias solution_5 even_or_odd
+    # Creates a class as SolutionClass:NumberFormat with the solution's code:
+    @solution_class = SolutionClass.create_wrapping_class_for '5_even_or_odd'
   end
 
   describe '#even_or_odd' do
@@ -24,7 +23,7 @@ describe 'Exercise 5_even_or_odd' do
 
     it 'sample cases match' do
       sample_data.each do |arg, result|
-        assert_equal(result, solution_5(arg), "#{arg} should output #{result}")
+        assert_equal(result, @solution_class.even_or_odd(arg), "#{arg} should output #{result}")
       end
     end
   end
