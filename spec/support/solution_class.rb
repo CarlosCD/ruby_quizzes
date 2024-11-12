@@ -18,21 +18,24 @@
 module SolutionClass
   class << self
     def create_wrapping_class_for(solution_name, solution_file = 'solution.rb')
+      # 1. Sanity checks:
       return nil unless solution_name.is_a?(String) && !solution_name.empty?
       solution_filename = File.join(__dir__, '..', '..', 'exercises', solution_name, solution_file)
       unless File.exist?(solution_filename)
         puts "'#{solution_filename}' does not exist!"
         return nil
       end
+      # 2. Solution's code copied:
       solution_code = File.open(solution_filename).read
-      # Avoiding this:
-      #   warning: `frozen_string_literal' is ignored after any tokens
-      solution_code.slice!(/\A# frozen_string_literal: true\n(.*)/)
+      line_number = 1
+      #   Avoiding this:
+      #     warning: `frozen_string_literal' is ignored after any tokens
+      magic_comment = solution_code.slice!(/\A# frozen_string_literal: true\n(.*)/)
+      line_number +=1 if magic_comment  # advancing the line to match the original
+      # 3. New Class creation:
       klass = const_set constant_name(solution_name), Class.new
-      # puts "klass name #{klass.name}"
-      # Stick the solution code in the new class, referencing to the original file:
-      klass.class_eval "class << self; #{solution_code};end", solution_filename, 1
-      # puts "klass methods: #{klass.methods(false)}"
+      #   Stick the solution code in the new class, referencing the original file:
+      klass.class_eval "class << self; #{solution_code};end", solution_filename, line_number
       klass
     end
 
