@@ -7,7 +7,7 @@ describe 'Exercise 2_anagram' do
     # Creates a class as SolutionClass::Anagram with the solution's code:
     @solution_class = SolutionClass.create_wrapping_class_for '2_anagram'
     # Extra detail, needed to locate the 'words_list.txt' file from here:
-    @words_list = File.join(__dir__, '../exercises/2_anagram/words_list.txt')
+    @words_list = File.join(__dir__, '../../exercises/2_anagram/words_list.txt')
   end
 
   describe '#anagram' do

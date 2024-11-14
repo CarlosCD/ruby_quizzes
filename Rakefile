@@ -6,5 +6,5 @@ task default: :test
 
 Rake::TestTask.new do |task|
   task.libs << 'spec'
-  task.pattern = 'spec/*_spec.rb'
+  task.pattern = 'spec/**/*_spec.rb'
 end
