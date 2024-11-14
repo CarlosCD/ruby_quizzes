@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'spec_helper'
+require 'spec_helper'
 
 describe 'Exercise 8_binary_multiple_of_3' do
   before do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'spec_helper'
+require 'spec_helper'
 
 class CaesarCipherVariationSpecs < Minitest::Spec
   # Next line is equivalent to RSpec's before(:all)

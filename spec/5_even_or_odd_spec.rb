@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'spec_helper'
+require 'spec_helper'
 
 describe 'Exercise 5_even_or_odd' do
   before do
